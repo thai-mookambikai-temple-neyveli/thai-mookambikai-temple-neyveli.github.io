@@ -3,94 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GPay UPI Intent Test</title>
+<title>Arulmigu Sri Thai Mookambikai Temple Trust</title>
+<meta name="description" content="Support Arulmigu Sri Thai Mookambikai Temple Trust through UPI donations.">
+
 <style>
-body{font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:22px 16px;background:#fafafa;color:#222;line-height:1.5}
-.card{background:#fff;padding:22px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-h1{font-size:23px;line-height:1.3}
-.upi{background:#f1f1f1;padding:13px;border-radius:8px;word-break:break-all;font-weight:bold}
-button,a{display:block;width:100%;box-sizing:border-box;margin:10px 0;padding:14px;border:0;border-radius:8px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
-.test{background:#eee;color:#111}
-.copy{background:#333;color:#fff}
-.warn{background:#fff4d6;padding:12px;border-radius:8px;font-size:14px}
-.small{font-size:13px;color:#666}
-code{word-break:break-all}
+:root{
+    --maroon:#7b1e2b;
+    --gold:#c9972b;
+    --cream:#fffaf0;
+    --ink:#2d2420;
+    --soft:#f7eee0;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Georgia,"Times New Roman",serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at top,#fffdf8 0,#fff7e9 42%,#f5ead9 100%);
+}
+.page{
+    max-width:650px;
+    margin:0 auto;
+    padding:20px 14px 36px;
+}
+.card{
+    background:rgba(255,255,255,.96);
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 8px 30px rgba(70,35,20,.13);
+}
+.hero{
+    text-align:center;
+    padding:24px 20px 18px;
+    background:linear-gradient(135deg,#fff7e8,#fffdf8);
+    border-bottom:1px solid #ead9bd;
+}
+.devi{
+    width:105px;
+    height:105px;
+    margin:0 auto 10px;
+    display:block;
+}
+.om{
+    color:var(--gold);
+    font-size:26px;
+    margin-bottom:4px;
+}
+h1{
+    margin:0 auto 8px;
+    max-width:560px;
+    font-size:25px;
+    line-height:1.22;
+    color:var(--maroon);
+}
+.subtitle{
+    margin:0;
+    font-size:15px;
+    color:#6b5a50;
+}
+.content{padding:22px 20px}
+.section-title{
+    text-align:center;
+    color:var(--maroon);
+    font-size:20px;
+    margin:4px 0 12px;
+}
+.upi-box{
+    background:var(--soft);
+    border:1px solid #ead8ba;
+    border-radius:12px;
+    padding:14px 12px;
+    text-align:center;
+    font-family:Arial,sans-serif;
+    font-size:15px;
+    font-weight:700;
+    word-break:break-all;
+    color:#3b2921;
+}
+.copy-btn,.app-btn{
+    display:block;
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:14px 12px;
+    margin-top:11px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+    font-family:Arial,sans-serif;
+}
+.copy-btn{
+    background:var(--maroon);
+    color:white;
+}
+.copy-btn:active,.app-btn:active{transform:scale(.99)}
+.apps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.app-btn{
+    margin-top:0;
+    background:white;
+    color:var(--maroon);
+    border:1px solid #dfc9a6;
+}
+.instructions{
+    margin-top:20px;
+    padding:16px;
+    border-radius:14px;
+    background:#fffaf2;
+    border:1px solid #ead8ba;
+    font-family:Arial,sans-serif;
+}
+.instructions ol{
+    margin:8px 0 0;
+    padding-left:22px;
+}
+.instructions li{margin:7px 0}
+.verify{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    background:#f8f0df;
+    text-align:center;
+    font-family:Arial,sans-serif;
+    font-size:14px;
+}
+.footer{
+    text-align:center;
+    padding:0 20px 22px;
+    font-family:Arial,sans-serif;
+    font-size:12px;
+    color:#75675f;
+}
+@media(max-width:420px){
+    h1{font-size:22px}
+    .apps{grid-template-columns:1fr}
+}
 </style>
 </head>
+
 <body>
+<div class="page">
 <div class="card">
 
-<h1>Google Pay — Complete UPI Intent Test</h1>
+<section class="hero">
 
-<p><strong>Recipient:</strong><br>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</p>
+<!-- Small decorative Devi illustration; no external image is required. -->
+<svg class="devi" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-label="Devi illustration">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#d9a441"/>
+      <stop offset="1" stop-color="#8b1e2d"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="76" fill="#fff6e5" stroke="#d2a34b" stroke-width="3"/>
+  <path d="M80 28 C65 28 53 42 53 59 C53 75 64 86 80 89 C96 86 107 75 107 59 C107 42 95 28 80 28Z" fill="url(#g1)"/>
+  <path d="M42 67 Q80 42 118 67 L111 116 Q80 139 49 116Z" fill="#8b1e2d"/>
+  <circle cx="69" cy="60" r="3.5" fill="#3a231d"/>
+  <circle cx="91" cy="60" r="3.5" fill="#3a231d"/>
+  <path d="M72 73 Q80 78 88 73" fill="none" stroke="#3a231d" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="80" cy="52" r="4" fill="#d2a34b"/>
+  <path d="M34 92 Q19 82 28 68 Q42 73 49 86Z" fill="#d2a34b"/>
+  <path d="M126 92 Q141 82 132 68 Q118 73 111 86Z" fill="#d2a34b"/>
+  <path d="M55 109 Q80 124 105 109 L111 127 Q80 148 49 127Z" fill="#d2a34b"/>
+  <path d="M51 43 Q80 18 109 43" fill="none" stroke="#8b1e2d" stroke-width="7" stroke-linecap="round"/>
+</svg>
 
-<p><strong>UPI ID:</strong></p>
-<div class="upi">QR918903043830-0072@unionbankofindia</div>
+<div class="om">ॐ</div>
+<h1>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</h1>
+<p class="subtitle">With gratitude for your devotion and support</p>
 
-<button class="copy" onclick="copyUPI()">Copy UPI ID</button>
+</section>
 
-<div class="warn">
-<strong>Test amount: ₹1.00</strong><br>
-This is a controlled diagnostic test. If Google Pay opens a payment screen,
-please check the recipient details. Do not complete the payment unless you
-actually intend to send ₹1.00 to the Temple Trust.
-</div>
+<section class="content">
 
-<h2>Test 1 — Complete Google Pay request</h2>
+<h2 class="section-title">Offer Your Donation Through UPI</h2>
 
-<p class="small">
-This request supplies the recipient UPI ID, recipient name, transaction
-reference, transaction note, amount and currency. It does not use the generic
-<code>upi://pay</code> scheme.
-</p>
+<div class="upi-box" id="upiId">QR918903043830-0072@unionbankofindia</div>
 
-<a class="test" href="gpay://upi/pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;tr=TMTEST20261003A1&amp;tn=Temple%20UPI%20intent%20test&amp;am=1.00&amp;cu=INR">
-Open Google Pay — ₹1 Test
+<button class="copy-btn" onclick="copyUPI()">📋 Copy UPI ID</button>
+
+<h2 class="section-title" style="margin-top:28px">Open Your UPI App</h2>
+
+<div class="apps">
+
+<a class="app-btn"
+   href="gpay://upi/"
+   aria-label="Open Google Pay">
+   Google Pay
 </a>
 
-<h2>Test 2 — Manual control</h2>
+<a class="app-btn"
+   href="bhim://upi/"
+   aria-label="Open BHIM">
+   BHIM
+</a>
 
+<a class="app-btn"
+   href="phonepe://"
+   aria-label="Open PhonePe">
+   PhonePe
+</a>
+
+<a class="app-btn"
+   href="paytmmp://"
+   aria-label="Open Paytm">
+   Paytm
+</a>
+
+</div>
+
+<div class="instructions">
+<strong>How to donate</strong>
 <ol>
 <li>Tap <strong>Copy UPI ID</strong>.</li>
-<li>Open Google Pay normally.</li>
-<li>Choose <strong>Pay / Send Money</strong>.</li>
-<li>Paste the UPI ID.</li>
-<li>Enter the amount manually.</li>
+<li>Open your preferred UPI app.</li>
+<li>Select <strong>Pay</strong> or <strong>Send Money</strong>.</li>
+<li>Paste the copied UPI ID.</li>
+<li>Enter the amount you wish to donate.</li>
+<li>Before confirming, check the recipient name shown by your UPI app.</li>
 </ol>
+</div>
 
-<p class="small">
-The purpose of Test 2 is to compare normal manual payment with the structured
-payment request above.
-</p>
+<div class="verify">
+<strong>Please verify the recipient:</strong><br>
+ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST
+</div>
 
+</section>
+
+<div class="footer">
+Your payment is completed directly inside your chosen UPI application.
+This webpage does not collect your UPI PIN or payment credentials.
+</div>
+
+</div>
 </div>
 
 <script>
 function copyUPI(){
-    const text="QR918903043830-0072@unionbankofindia";
-    if(navigator.clipboard && window.isSecureContext){
+    const text = document.getElementById("upiId").innerText.trim();
+
+    if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text)
-        .then(()=>alert("UPI ID copied."))
-        .catch(()=>fallbackCopy(text));
-    }else{
+        .then(function(){
+            alert("UPI ID copied successfully.");
+        })
+        .catch(function(){
+            fallbackCopy(text);
+        });
+    } else {
         fallbackCopy(text);
     }
 }
 
 function fallbackCopy(text){
-    const area=document.createElement("textarea");
-    area.value=text;
-    area.style.position="fixed";
-    area.style.left="-9999px";
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
     document.body.appendChild(area);
     area.focus();
     area.select();
-    try{
+
+    try {
         document.execCommand("copy");
-        alert("UPI ID copied.");
-    }catch(e){
+        alert("UPI ID copied successfully.");
+    } catch(e) {
         alert("Please copy the UPI ID manually.");
     }
+
     document.body.removeChild(area);
 }
 </script>
