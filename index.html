@@ -1,14 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="UPI contribution page for Arulmigu Sri Thai Mookambikai Temple Trust">
-<title>Temple Contribution | Arulmigu Sri Thai Mookambikai Temple Trust</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Donation page for Arulmigu Sri Thai Mookambikai Temple Trust">
+<title>Donation | Arulmigu Sri Thai Mookambikai Temple Trust</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f2e8;color:#2d241b}.container{max-width:520px;margin:0 auto;padding:24px 16px 40px}.card{background:#fff;border-radius:18px;padding:28px 20px;text-align:center;box-shadow:0 5px 24px rgba(0,0,0,.12)}.om{font-size:38px;margin-bottom:8px}h1{font-size:24px;line-height:1.3;margin:0 0 12px}.intro{font-size:16px;line-height:1.5;margin-bottom:22px}.amount-title{font-weight:bold;margin-bottom:10px}.amounts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}.amount-btn{padding:13px 8px;border:1px solid #b9b0a3;background:#fafafa;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer}.amount-btn.selected{border:2px solid #16803b;background:#eef8f1}.custom{width:100%;padding:13px;border:1px solid #b9b0a3;border-radius:10px;font-size:16px;margin-bottom:16px}.pay{display:block;width:100%;padding:16px;border-radius:11px;background:#16803b;color:white;font-size:19px;font-weight:bold;border:none;cursor:pointer}.upi-box{margin-top:22px;padding:14px;background:#f3f3f3;border-radius:10px}.upi-label{font-weight:bold;margin-bottom:7px}.upi-id{word-break:break-all;font-size:14px}.copy{margin-top:10px;padding:9px 14px;border:1px solid #999;background:white;border-radius:8px;cursor:pointer}.note{margin-top:20px;font-size:13px;line-height:1.5;color:#665d53}.footer{margin-top:18px;font-size:12px;color:#777}
-</style></head><body><div class="container"><div class="card"><div class="om">🙏</div><h1>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</h1><p class="intro">Thank you for your kind support and contribution to the Temple Trust.</p><div class="amount-title">Select Contribution Amount</div><div class="amounts"><button class="amount-btn" type="button" onclick="selectAmount(100, this)">₹100</button>
-      <button class="amount-btn" type="button" onclick="selectAmount(200, this)">₹200</button>
-      <button class="amount-btn" type="button" onclick="selectAmount(500, this)">₹500</button>
-      <button class="amount-btn" type="button" onclick="selectAmount(1000, this)">₹1,000</button></div><input id="customAmount" class="custom" type="number" min="1" step="1" inputmode="numeric" placeholder="Or enter another amount (₹)" oninput="clearSelection()"><button class="pay" type="button" onclick="payViaUPI()">💳 PAY VIA UPI</button><div class="upi-box"><div class="upi-label">UPI ID</div><div class="upi-id" id="upiText">QR918903043830-0072@unionbankofindia</div><button class="copy" type="button" onclick="copyUPI()">Copy UPI ID</button></div><p class="note">Tap “PAY VIA UPI” to open an available UPI app on your phone. If the UPI app does not open, copy the UPI ID above and make the payment directly from Google Pay, PhonePe, Paytm, BHIM, or another UPI application.</p><div class="footer">Thank you for your contribution. 🙏</div></div></div><script>
-const UPI_ID="QR918903043830-0072@unionbankofindia",PAYEE_NAME="ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST";let selectedAmount="";function selectAmount(a,b){selectedAmount=String(a);document.getElementById("customAmount").value="";document.querySelectorAll(".amount-btn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected")}function clearSelection(){selectedAmount="";document.querySelectorAll(".amount-btn").forEach(x=>x.classList.remove("selected"))}function payViaUPI(){const c=document.getElementById("customAmount").value.trim(),a=c||selectedAmount;let u="upi://pay?pa="+encodeURIComponent(UPI_ID)+"&pn="+encodeURIComponent(PAYEE_NAME);if(a&&Number(a)>0)u+="&am="+encodeURIComponent(Number(a).toFixed(2));u+="&cu=INR";window.location.href=u}function copyUPI(){navigator.clipboard.writeText(UPI_ID).then(()=>alert("UPI ID copied.")).catch(()=>alert("Please copy the UPI ID manually: "+UPI_ID))}
-</script></body></html>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f7f2e8;
+  color: #2d241b;
+}
+
+.container {
+  max-width: 540px;
+  margin: auto;
+  padding: 20px 14px 40px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 26px 18px;
+  text-align: center;
+  box-shadow: 0 5px 24px rgba(0,0,0,.12);
+}
+
+.om {
+  font-size: 38px;
+  margin-bottom: 6px;
+}
+
+h1 {
+  font-size: 23px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+}
+
+.intro {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 18px 0 10px;
+}
+
+.amounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.amount-btn {
+  padding: 13px 8px;
+  border: 1px solid #aaa;
+  background: #fafafa;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.amount-btn.selected {
+  border: 2px solid #16803b;
+  background: #eef8f1;
+}
+
+.custom {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.pay-any {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin-top: 16px;
+  border-radius: 11px;
+  background: #16803b;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.app-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.app-btn {
+  padding: 13px 6px;
+  border: 1px solid #aaa;
+  background: #fff;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.qr-box {
+  margin-top: 18px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+}
+
+#qrcode {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+#qrcode img, #qrcode canvas {
+  max-width: 230px;
+  height: auto;
+}
+
+.upi-box {
+  margin-top: 18px;
+  padding: 14px;
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.upi-id {
+  word-break: break-all;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.copy {
+  margin-top: 10px;
+  padding: 9px 14px;
+  border: 1px solid #999;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.note {
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #665d53;
+}
+
+.footer {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<div class="card">
+
+  <div class="om">🙏</div>
+
+  <h1>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</h1>
+
+  <p class="intro">
+    Thank you for your kind support and contribution to the Temple Trust.
+  </p>
+
+  <div class="section-title">Select Donation Amount</div>
+
+  <div class="amounts">
+    <button class="amount-btn" type="button" onclick="selectAmount(100, this)">₹100</button>
+    <button class="amount-btn" type="button" onclick="selectAmount(200, this)">₹200</button>
+    <button class="amount-btn" type="button" onclick="selectAmount(500, this)">₹500</button>
+    <button class="amount-btn" type="button" onclick="selectAmount(1000, this)">₹1,000</button>
+  </div>
+
+  <input
+    id="customAmount"
+    class="custom"
+    type="number"
+    min="1"
+    step="1"
+    inputmode="numeric"
+    placeholder="Or enter another amount (₹)"
+    oninput="clearSelection()"
+  >
+
+  <!-- OPTION 1 -->
+  <div class="section-title">1. Pay with any UPI app</div>
+
+  <button class="pay-any" type="button" onclick="payAnyUPI()">
+    💳 PAY VIA UPI
+  </button>
+
+  <!-- OPTION 2 -->
+  <div class="section-title">2. Choose a UPI app</div>
+
+  <div class="app-buttons">
+    <button class="app-btn" type="button" onclick="payApp('bhim')">
+      BHIM
+    </button>
+    <button class="app-btn" type="button" onclick="payApp('gpay')">
+      Google Pay
+    </button>
+    <button class="app-btn" type="button" onclick="payApp('phonepe')">
+      PhonePe
+    </button>
+    <button class="app-btn" type="button" onclick="payApp('paytm')">
+      Paytm
+    </button>
+  </div>
+
+  <!-- OPTION 3 -->
+  <div class="section-title">3. Scan the UPI QR code</div>
+
+  <div class="qr-box">
+    <div id="qrcode"></div>
+    <div style="font-size:13px;color:#666;">
+      Select the donation amount first, then scan this QR code
+      using your UPI app.
+    </div>
+  </div>
+
+  <div class="upi-box">
+    <strong>UPI ID</strong>
+    <div class="upi-id" id="upiText">
+      QR918903043830-0072@unionbankofindia
+    </div>
+    <button class="copy" type="button" onclick="copyUPI()">
+      Copy UPI ID
+    </button>
+  </div>
+
+  <p class="note">
+    Please verify the recipient name and amount shown in your UPI app
+    before entering your UPI PIN.
+  </p>
+
+  <div class="footer">
+    Thank you for your contribution. 🙏
+  </div>
+
+</div>
+</div>
+
+<!-- QR-code library. It is loaded from a public CDN. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+const UPI_ID = "QR918903043830-0072@unionbankofindia";
+const PAYEE_NAME = "ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST";
+const NOTE = "Temple Donation";
+
+let selectedAmount = "";
+let qrCodeObject = null;
+
+function getAmount() {
+  const custom = document.getElementById("customAmount").value.trim();
+  const amount = custom || selectedAmount;
+
+  if (!amount || Number(amount) <= 0) {
+    alert("Please select or enter a donation amount first.");
+    return null;
+  }
+
+  return Number(amount).toFixed(2);
+}
+
+function buildUPIUrl() {
+  const amount = getAmount();
+  if (!amount) return null;
+
+  return "upi://pay" +
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(PAYEE_NAME) +
+    "&am=" + encodeURIComponent(amount) +
+    "&cu=INR" +
+    "&tn=" + encodeURIComponent(NOTE);
+}
+
+function selectAmount(amount, button) {
+  selectedAmount = String(amount);
+  document.getElementById("customAmount").value = "";
+
+  document.querySelectorAll(".amount-btn").forEach(function(btn) {
+    btn.classList.remove("selected");
+  });
+
+  button.classList.add("selected");
+  updateQR();
+}
+
+function clearSelection() {
+  selectedAmount = "";
+
+  document.querySelectorAll(".amount-btn").forEach(function(btn) {
+    btn.classList.remove("selected");
+  });
+
+  updateQR();
+}
+
+function payAnyUPI() {
+  const url = buildUPIUrl();
+  if (url) window.location.href = url;
+}
+
+function payApp(app) {
+  const amount = getAmount();
+  if (!amount) return;
+
+  const params =
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(PAYEE_NAME) +
+    "&am=" + encodeURIComponent(amount) +
+    "&cu=INR" +
+    "&tn=" + encodeURIComponent(NOTE);
+
+  let url;
+
+  /*
+   * These app-specific schemes are supported by many Android
+   * versions/apps, but the installed app may still reject an
+   * unsupported intent. The generic UPI button remains the
+   * primary option.
+   */
+  if (app === "bhim") {
+    url = "bhim://upi/pay" + params;
+  } else if (app === "gpay") {
+    url = "tez://upi/pay" + params;
+  } else if (app === "phonepe") {
+    url = "phonepe://pay" + params;
+  } else if (app === "paytm") {
+    url = "paytmmp://pay" + params;
+  }
+
+  if (url) window.location.href = url;
+}
+
+function updateQR() {
+  const amount = (document.getElementById("customAmount").value.trim()
+                  || selectedAmount);
+
+  const qrContainer = document.getElementById("qrcode");
+  qrContainer.innerHTML = "";
+
+  if (!amount || Number(amount) <= 0) {
+    qrContainer.innerHTML =
+      '<div style="font-size:13px;color:#777;padding:20px;">' +
+      'Select a donation amount to generate the QR code.' +
+      '</div>';
+    return;
+  }
+
+  const qrData =
+    "upi://pay" +
+    "?pa=" + encodeURIComponent(UPI_ID) +
+    "&pn=" + encodeURIComponent(PAYEE_NAME) +
+    "&am=" + encodeURIComponent(Number(amount).toFixed(2)) +
+    "&cu=INR" +
+    "&tn=" + encodeURIComponent(NOTE);
+
+  if (typeof QRCode === "undefined") {
+    qrContainer.innerHTML =
+      '<div style="font-size:13px;color:#b00;padding:20px;">' +
+      'QR generator could not be loaded. Please use the UPI button or copy the UPI ID.' +
+      '</div>';
+    return;
+  }
+
+  qrCodeObject = new QRCode(qrContainer, {
+    text: qrData,
+    width: 220,
+    height: 220,
+    correctLevel: QRCode.CorrectLevel.M
+  });
+}
+
+document.getElementById("customAmount").addEventListener("input", updateQR);
+
+function copyUPI() {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(UPI_ID).then(function() {
+      alert("UPI ID copied.");
+    }).catch(function() {
+      alert("Please copy the UPI ID manually: " + UPI_ID);
+    });
+  } else {
+    alert("Please copy the UPI ID manually: " + UPI_ID);
+  }
+}
+
+updateQR();
+</script>
+
+</body>
+</html>
