@@ -55,12 +55,15 @@ h1 {
   padding: 17px 12px;
   background: #16803b;
   color: #ffffff;
-  border: none;
   border-radius: 11px;
   font-size: 19px;
   font-weight: bold;
-  cursor: pointer;
   text-decoration: none;
+  margin: 0 auto;
+}
+
+.pay-button:active {
+  opacity: 0.85;
 }
 
 .upi-box {
@@ -79,16 +82,6 @@ h1 {
   word-break: break-all;
   font-size: 14px;
   line-height: 1.5;
-}
-
-.copy-button {
-  margin-top: 12px;
-  padding: 9px 16px;
-  border: 1px solid #999;
-  background: #ffffff;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
 }
 
 .note {
@@ -120,31 +113,28 @@ h1 {
     </p>
 
     <!--
-      Basic UPI Intent.
-      No amount is specified.
-      No app-specific scheme is used.
-      The UPI application should allow the donor to enter the amount.
+      IMPORTANT:
+      This is a plain HTML hyperlink.
+      There is NO JavaScript involved in launching the UPI application.
     -->
-    <button class="pay-button" type="button" onclick="payViaUPI()">
+    <a
+      class="pay-button"
+      href="upi://pay?pa=QR918903043830-0072@unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST">
       💳 PAY VIA UPI
-    </button>
+    </a>
 
     <div class="upi-box">
       <div class="upi-label">UPI ID</div>
 
-      <div class="upi-id" id="upiText">
+      <div class="upi-id">
         QR918903043830-0072@unionbankofindia
       </div>
-
-      <button class="copy-button" type="button" onclick="copyUPI()">
-        Copy UPI ID
-      </button>
     </div>
 
     <p class="note">
       Tap “PAY VIA UPI” to open your preferred UPI application.
-      You can then enter the amount and complete the payment.
-      Please verify the recipient name before entering your UPI PIN.
+      Enter the amount in your UPI app and verify the recipient name
+      before entering your UPI PIN.
     </p>
 
     <div class="footer">
@@ -153,47 +143,6 @@ h1 {
 
   </div>
 </div>
-
-<script>
-const UPI_ID = "QR918903043830-0072@unionbankofindia";
-const PAYEE_NAME = "ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST";
-
-function payViaUPI() {
-
-  /*
-    Deliberately using only the basic UPI payment URI.
-
-    No amount (am)
-    No transaction note (tn)
-    No app-specific scheme
-    No QR-code library
-  */
-
-  const upiUrl =
-    "upi://pay" +
-    "?pa=" + encodeURIComponent(UPI_ID) +
-    "&pn=" + encodeURIComponent(PAYEE_NAME);
-
-  window.location.href = upiUrl;
-}
-
-function copyUPI() {
-
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-
-    navigator.clipboard.writeText(UPI_ID)
-      .then(function() {
-        alert("UPI ID copied.");
-      })
-      .catch(function() {
-        alert("Please copy the UPI ID manually: " + UPI_ID);
-      });
-
-  } else {
-    alert("Please copy the UPI ID manually: " + UPI_ID);
-  }
-}
-</script>
 
 </body>
 </html>
