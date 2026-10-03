@@ -3,84 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UPI Diagnostic Test - Thai Mookambikai Temple Trust</title>
+<title>GPay UPI Intent Test</title>
 <style>
-body{font-family:Arial,sans-serif;max-width:620px;margin:auto;padding:20px 16px;background:#fafafa;color:#222;line-height:1.5}
+body{font-family:Arial,sans-serif;max-width:600px;margin:auto;padding:22px 16px;background:#fafafa;color:#222;line-height:1.5}
 .card{background:#fff;padding:22px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-h1{font-size:22px;line-height:1.3}
-h2{font-size:19px;margin-top:26px}
+h1{font-size:23px;line-height:1.3}
 .upi{background:#f1f1f1;padding:13px;border-radius:8px;word-break:break-all;font-weight:bold}
-button,a{display:block;width:100%;box-sizing:border-box;margin:9px 0;padding:13px;border:0;border-radius:8px;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
-.copy{background:#333;color:#fff}
+button,a{display:block;width:100%;box-sizing:border-box;margin:10px 0;padding:14px;border:0;border-radius:8px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
 .test{background:#eee;color:#111}
-.test2{background:#e5e5e5;color:#111}
-.note{font-size:13px;color:#666}
-.result{background:#f7f7f7;padding:12px;border-radius:8px;margin-top:12px}
+.copy{background:#333;color:#fff}
+.warn{background:#fff4d6;padding:12px;border-radius:8px;font-size:14px}
+.small{font-size:13px;color:#666}
+code{word-break:break-all}
 </style>
 </head>
-
 <body>
 <div class="card">
 
-<h1>UPI Diagnostic Test</h1>
+<h1>Google Pay — Complete UPI Intent Test</h1>
 
-<p><strong>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</strong></p>
+<p><strong>Recipient:</strong><br>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</p>
 
-<p><strong>Temple UPI ID:</strong></p>
+<p><strong>UPI ID:</strong></p>
 <div class="upi">QR918903043830-0072@unionbankofindia</div>
 
-<button class="copy" onclick="copyUPI()">Copy Temple UPI ID</button>
+<button class="copy" onclick="copyUPI()">Copy UPI ID</button>
 
-<div class="result">
-<strong>Purpose of this page</strong><br>
-This page is only a diagnostic test. No payment amount is specified and you
-should not make a payment during testing.
+<div class="warn">
+<strong>Test amount: ₹1.00</strong><br>
+This is a controlled diagnostic test. If Google Pay opens a payment screen,
+please check the recipient details. Do not complete the payment unless you
+actually intend to send ₹1.00 to the Temple Trust.
 </div>
 
-<h2>TEST A — Google Pay: open app only</h2>
-<p class="note">
-This test contains no UPI ID and no payment information. It only attempts to
-open Google Pay.
-</p>
-<a class="test" href="gpay://upi/">A. Open Google Pay only</a>
+<h2>Test 1 — Complete Google Pay request</h2>
 
-<h2>TEST B — Google Pay: supply UPI ID</h2>
-<p class="note">
-This test supplies the Temple UPI ID to Google Pay but does not specify an amount.
+<p class="small">
+This request supplies the recipient UPI ID, recipient name, transaction
+reference, transaction note, amount and currency. It does not use the generic
+<code>upi://pay</code> scheme.
 </p>
-<a class="test" href="gpay://upi/pay?pa=QR918903043830-0072%40unionbankofindia">
-B. Google Pay + Temple UPI ID
+
+<a class="test" href="gpay://upi/pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;tr=TMTEST20261003A1&amp;tn=Temple%20UPI%20intent%20test&amp;am=1.00&amp;cu=INR">
+Open Google Pay — ₹1 Test
 </a>
 
-<h2>TEST C — BHIM: open app only</h2>
-<p class="note">
-This test contains no UPI ID and no payment information. It only attempts to
-open BHIM.
-</p>
-<a class="test2" href="bhim://upi/">C. Open BHIM only</a>
+<h2>Test 2 — Manual control</h2>
 
-<h2>TEST D — BHIM: supply UPI ID</h2>
-<p class="note">
-This test supplies the Temple UPI ID to BHIM but does not specify an amount.
-</p>
-<a class="test2" href="bhim://upi/pay?pa=QR918903043830-0072%40unionbankofindia">
-D. BHIM + Temple UPI ID
-</a>
-
-<h2>Manual test</h2>
 <ol>
-<li>Tap <strong>Copy Temple UPI ID</strong>.</li>
-<li>Open Google Pay or BHIM normally from your phone.</li>
+<li>Tap <strong>Copy UPI ID</strong>.</li>
+<li>Open Google Pay normally.</li>
 <li>Choose <strong>Pay / Send Money</strong>.</li>
 <li>Paste the UPI ID.</li>
-<li>Enter any amount you intend to test with.</li>
-<li>Verify the recipient name before proceeding.</li>
+<li>Enter the amount manually.</li>
 </ol>
 
-<p class="note">
-<strong>Important:</strong> Do not complete a payment just for this diagnostic.
-The objective is to observe whether the app opens and whether it accepts the
-UPI ID supplied by the webpage.
+<p class="small">
+The purpose of Test 2 is to compare normal manual payment with the structured
+payment request above.
 </p>
 
 </div>
@@ -88,7 +68,6 @@ UPI ID supplied by the webpage.
 <script>
 function copyUPI(){
     const text="QR918903043830-0072@unionbankofindia";
-
     if(navigator.clipboard && window.isSecureContext){
         navigator.clipboard.writeText(text)
         .then(()=>alert("UPI ID copied."))
@@ -106,14 +85,12 @@ function fallbackCopy(text){
     document.body.appendChild(area);
     area.focus();
     area.select();
-
     try{
         document.execCommand("copy");
         alert("UPI ID copied.");
     }catch(e){
-        alert("Please copy the UPI ID manually: "+text);
+        alert("Please copy the UPI ID manually.");
     }
-
     document.body.removeChild(area);
 }
 </script>
