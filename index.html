@@ -3,60 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donate - Sri Thai Mookambikai Temple Trust</title>
+<title>Temple UPI App Test</title>
 <style>
-body{font-family:Arial,sans-serif;max-width:560px;margin:auto;padding:24px 18px;line-height:1.5;color:#222;background:#fafafa}
-.card{background:#fff;padding:24px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-h1{font-size:24px;line-height:1.25}
-.upi{background:#f2f2f2;padding:14px;border-radius:8px;word-break:break-all;font-weight:bold}
-button,a{display:block;width:100%;box-sizing:border-box;border:0;border-radius:8px;padding:14px 16px;margin:10px 0;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
-.copy{background:#333;color:#fff}.app{background:#eee;color:#111}.note{font-size:14px;color:#555}
+body{font-family:Arial,sans-serif;max-width:560px;margin:auto;padding:22px 16px;background:#fafafa;color:#222;line-height:1.5}
+.card{background:#fff;padding:22px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+h1{font-size:23px;line-height:1.25}
+.upi{background:#f1f1f1;padding:13px;border-radius:8px;word-break:break-all;font-weight:bold}
+button,a{display:block;width:100%;box-sizing:border-box;margin:10px 0;padding:14px;border:0;border-radius:8px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
+.copy{background:#333;color:#fff}.app{background:#eee;color:#111}
+.small{font-size:13px;color:#666}
 </style>
 </head>
 <body>
 <div class="card">
 <h1>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</h1>
 
-<p><strong>UPI ID:</strong></p>
-<div class="upi" id="upiId">QR918903043830-0072@unionbankofindia</div>
+<p><strong>UPI ID</strong></p>
+<div class="upi" id="upi">QR918903043830-0072@unionbankofindia</div>
+<button class="copy" onclick="copyUPI()">Copy UPI ID</button>
 
-<button class="copy" onclick="copyUpi()">Copy UPI ID</button>
+<h2>Test app-specific UPI links</h2>
 
-<h2>Open your UPI app</h2>
+<p class="small">
+These buttons do NOT use the generic <code>upi://pay</code> scheme.
+Each button uses the URI scheme associated with that particular UPI app.
+No amount is supplied, so you can enter the amount yourself if the app opens a payment screen.
+</p>
 
-<a class="app" href="intent://#Intent;package=in.org.npci.upiapp;end">Open BHIM</a>
-<a class="app" href="intent://#Intent;package=com.google.android.apps.nbu.paisa.user;end">Open Google Pay</a>
-<a class="app" href="intent://#Intent;package=com.phonepe.app;end">Open PhonePe</a>
-<a class="app" href="intent://#Intent;package=net.one97.paytm;end">Open Paytm</a>
+<a class="app"
+href="gpay://upi/pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;cu=INR">
+Open Google Pay
+</a>
 
-<h2>How to donate</h2>
+<a class="app"
+href="phonepe://pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;cu=INR">
+Open PhonePe
+</a>
+
+<a class="app"
+href="paytmmp://pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;cu=INR">
+Open Paytm
+</a>
+
+<a class="app"
+href="bhim://upi/pay?pa=QR918903043830-0072%40unionbankofindia&amp;pn=ARULMIGU%20SRI%20THAI%20MOOKAMBIKAI%20TEMPLE%20TRUST&amp;cu=INR">
+Open BHIM
+</a>
+
+<h2>Fallback manual method</h2>
 <ol>
 <li>Tap <strong>Copy UPI ID</strong>.</li>
-<li>Tap your preferred UPI app.</li>
+<li>Open your UPI app normally.</li>
 <li>Choose <strong>Pay / Send Money</strong>.</li>
-<li>Paste the copied UPI ID.</li>
-<li>Enter your donation amount.</li>
-<li>Verify that the recipient is <strong>ARULMIGU SRI THAI MOOKAMBIKAI TEMPLE TRUST</strong> before paying.</li>
+<li>Paste the UPI ID and enter the amount.</li>
+<li>Verify the recipient name before paying.</li>
 </ol>
 
-<p class="note"><strong>Important:</strong> This page does not create or send a payment request and does not specify an amount. It only copies the UPI ID and attempts to open the selected UPI app.</p>
+<p class="small">
+If a button does not open the app, that result is useful: it means that the
+installed app/browser combination is not accepting that app-specific URI.
+</p>
 </div>
 
 <script>
-function copyUpi(){
- const text=document.getElementById("upiId").innerText.trim();
+function copyUPI(){
+ const text=document.getElementById("upi").innerText.trim();
  if(navigator.clipboard && window.isSecureContext){
-   navigator.clipboard.writeText(text).then(()=>alert("UPI ID copied."))
-   .catch(()=>fallbackCopy(text));
- }else{fallbackCopy(text);}
+   navigator.clipboard.writeText(text)
+   .then(()=>alert("UPI ID copied."))
+   .catch(()=>fallback(text));
+ }else{fallback(text);}
 }
-function fallbackCopy(text){
- const area=document.createElement("textarea");
- area.value=text; area.style.position="fixed"; area.style.left="-9999px";
- document.body.appendChild(area); area.focus(); area.select();
+function fallback(text){
+ const t=document.createElement("textarea");
+ t.value=text;t.style.position="fixed";t.style.left="-9999px";
+ document.body.appendChild(t);t.focus();t.select();
  try{document.execCommand("copy");alert("UPI ID copied.");}
- catch(e){alert("Please copy the UPI ID manually: "+text);}
- document.body.removeChild(area);
+ catch(e){alert("Please copy the UPI ID manually.");}
+ document.body.removeChild(t);
 }
 </script>
 </body>
